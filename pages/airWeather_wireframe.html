@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>WeathAir</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Compiled and minified Materialize CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link rel="stylesheet" type="text/css" href="weathair.css">
+        <!--optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <header>
+            <nav class="white" role="navigation">
+                <div class="nav-wrapper container">
+                    <a href="#" class="brand-logo">
+                        <img src="logo.png" alt="wair-logo">
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+
+                    <ul id="nav-mobile" class="side-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                    <!--collapase on small screen-->
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                </div>
+            </nav>
+            <div class="container row grey">
+                <div class="row">
+                    <h1 class="header col s12 center">WeathAir</h1>
+                    <h5 class="header col s12 center">Going for a run? Check the weather and air quality</h5>
+                </div>
+            </div>
+        </header>
+        <main>
+            <!--search section-->
+            <section class="row" id="js-search-section">
+                <form class="col s12" id="js-search-form">
+                    <div class="row">
+                        <div class="input-field col s12 m4 offset-m4">
+                            <input id="js-city-entry" name="js-city-entry" type="text"  placeholder="Los Angeles">
+                            <label for="js-city-entry" class="active">US city</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 m4 offset-m4">
+                            <input id="js-state-entry" name="js-state-entry" type="text"  placeholder="California">
+                            <label for="js-state-entry" class="active">US state</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 center">
+                            <button class="btn waves-effect waves-light" type="submit" name="action" id="js-submit"><i class="material-icons right">cloud</i>Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <!--result section-->
+            <section class="row" id="js-result-section">
+                <div class="col s12 m6 offset-m3">
+                    <div class="card sticky-action">
+                        <div class="card-tabs">
+                            <ul class="tabs tabs-fixed-width" id="js-card-tabs">
+                                <li class="tab" id="js-air">
+                                    <a href="#">Air</button>
+                                </li>
+                            </ul>
+                        </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12" id="js-city-state"></div>
+                        </div>
+                        <div class="row" id="js-weather-brief">
+                            <div class="col s12 m6 center" id="js-aqi-data">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 right">
+                                <span class="card-title activator"><i class="material-icons" id="js-more-info">more_vert</i></span>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="card-reveal">
+                            <div class="row">
+                                <div class="col s12">
+                                <span class="card-title"><i class="material-icons right">close</i></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 m6" id="js-weather-detail">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+    <!--options section
+    <section class="row" id="js-option-section">
+        <div class="col s12 center">
+            <h5>Enter city and state for: </h5>
+        </div>
+        <div class="col s12 m4">
+            <div class="icon-block">
+                <h2 class="center"><button type="click" id="js-air-button"><i class="wi wi-windy"></i></button></h2>
+                <h5 class="center">Air Quality</h5>
+                <ul class="light center">
+                    <li>current air quality index,</li>
+                    <li>pm2.5, pollen count,</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col s12 m4">
+            <div class="icon-block">
+                <h2 class="center"><button type="click" id="js-weather-button"><i class="wi wi-day-cloudy"></i></button></h2>
+                <h5 class="center">Weather</h5>
+                <ul class="light center">
+                    <li>current temperature,</li>
+                    <li>humidity, precipitation,</li>
+                    <li>wind speed and direction,</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col s12 m4">
+            <div class="icon-block">
+                <h2 class="center"><button type="click" id="js-air-weather-button"><i class="wi wi-day-fog"></i></button></h2>
+                <h5 class="center">Combined Report</h5>
+                <ul class="light center">
+                    <li>current weather conditions</li>
+                    <li>current air quality</li>
+                </ul>
+          </div>
+        </div>
+    </section>-->
+
+
+        <footer class="page-footer grey">
+          <div class="container">
+            <div class="row">
+              <div class="col l8 s12 offset-l1">
+                <h5 class="black-text">About the App</h5>
+                <p class="black-text">WeathAir is a front-end project build using HTML, CSS, and JavaScript. Weather and air quality data are obtained through the free API access packages offered by Weatherbit and AirVisual, respectively.</p>
+              </div>
+              <div class="col l3 s12">
+                <h5 class="black-text">Connect</h5>
+                <ul>
+                    <li><a href="https://www.weatherbit.io/" class="black-text">Weatherbit</a></li>
+                    <li><a href="https://airvisual.com/" class="black-text">AirVisual</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container black-text center">
+            Made by <a href="#!" class="black-text">Julia Weng</a>
+            </div>
+          </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </body>
+</html>

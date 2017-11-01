@@ -1,0 +1,5 @@
+9cdba262b3aa3658b8cd5de15d877936cc435a44 world air quality map API key
+E3FYqJAMJhNcyS4ye air visual key
+
+air visual request url example
+http://api.airvisual.com/v2/city?city=los%20angeles&state=california&country=USA&key=E3FYqJAMJhNcyS4ye

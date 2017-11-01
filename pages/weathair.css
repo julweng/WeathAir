@@ -1,0 +1,47 @@
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+img[src="logo.png"] {
+    height: 65px;
+    width: 80px;
+}
+
+.material-icons.md-64 {
+    font-size: 4rem;
+}
+
+.material-icons.md-16 {
+    font-size: 1rem
+}
+
+/* label color */
+ .input-field label {
+   color: #000;
+   font-size: 1.5rem;
+ }
+ /* label focus color */
+ .input-field input[type=text]:focus + label {
+   color: #000;
+ }
+ /* label underline focus color */
+ .input-field input[type=text]:focus {
+   border-bottom: 1px solid #000;
+   box-shadow: 0 1px 0 0 #000;
+ }
+ /* icon prefix focus color */
+ .input-field {
+   color: #000;
+ }
