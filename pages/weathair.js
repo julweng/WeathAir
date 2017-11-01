@@ -136,10 +136,9 @@ function addDateTabs(weatherData){
     let array = [];
     makeDateArray(weatherData, array);
     array.forEach((date, index) => {
-        // tabs
         $('#js-card-tabs').append(`
             <li class="tab">
-                <a href="#" id="js-tab-date${index}">${date}</a>
+                <a href="#js-date${index}"><strong>${date}</strong></a>
             </li>`);
     });
 }
@@ -167,24 +166,25 @@ function displayWeather(weatherData) {
         let max_tempCel = convertToCelcius(max_temp);
         let min_tempCel = convertToCelcius(min_temp);
     $('#js-data').append(`
-        <div class="col s12 m6 center" id="js-date${index}">
-            <img src="icons/${icon}.png" alt="weather icon">
-            <p>${min_temp} / ${max_temp} &deg;F</p>
-            <p>${min_tempCel} / ${max_tempCel} &deg;C</p>
-            <p>${description}</p>
-        </div>`);
-    $('#js-data').append(`
-        <div class="col s12 m6 center" id="js-date${index}-detail">
-            <ul class="collection" id="js-weather-detail">
-                <li class="collection-item">cloud coverage: ${clouds} %</li>
-                <li class="collection-item">wind sp: ${wind_sp} m/s</li>
-                <li class="collection-item">wind direct: ${wind_cdir}</li>
-                <li class="collection-item">prob. precip: ${pop}%</li>
-                <li class="collection-item">visibility: ${vis} km</li>
-                <li class="collection-item">snow: ${snow} mm</li>
-                <li class="collection-item">snow dep: ${snow_depth} mm</li>
-                <li class="collection-item">daily max. UV: ${uv}</li>
-            </ul>
+        <div class="row hidden" id="js-date${index}">
+            <div class="col s12 m6 center">
+                <img src="icons/${icon}.png" alt="weather icon">
+                <p>${min_temp} / ${max_temp} &deg;F</p>
+                <p>${min_tempCel} / ${max_tempCel} &deg;C</p>
+                <p>${description}</p>
+            </div>
+            <div class="col s12 m6 left">
+                <ul>
+                    <li><strong>average cloud coverage:</strong> ${clouds} %</li>
+                    <li><strong>wind speed:</strong> ${wind_sp} m/s</li>
+                    <li class="collection-item"><strong>wind direction:</strong> ${wind_cdir}</li>
+                    <li class="collection-item"><strong>probability of precip:</strong> ${pop}%</li>
+                    <li class="collection-item"><strong>visibility:</strong> ${vis} km</li>
+                    <li class="collection-item"><strong>snow:</strong> ${snow} mm</li>
+                    <li class="collection-item"><strong>snow depth:</strong> ${snow_depth} mm</li>
+                    <li class="collection-item"><strong>daily max. UV (0-11+):</strong> ${uv}</li>
+                </ul>
+            </div>
         </div>`);
     });
 }
@@ -194,17 +194,27 @@ function renderAir(airData) {
     // get google sentiment icon for air quality
     let sentiment = airQualitySentiment(aqi);
     let message = airQualityMessage(aqi);
+    $('#js-card-tabs').prepend(
+        `<li class="tab"><a href="#js-air" class="active"><strong>Air</strong></a></li>`);
     $('#js-data').append(`
-        <div class="col s12 m6 center" id="js-aqi-data">
-            <i class="material-icons md-64">${sentiment}</i>
-            <h5>AQI: ${aqi}<a href="https://airnow.gov/index.cfm?action=aqibasics.aqi" target="_blank" rel="noopener noreferrer" title="EPA explanation on AQI"><sup><i class="material-icons md-16">info_outline</i></sup></a></h5>
-        </div>
-        <div class="col s12 m6 center" id="js-aqi-msg">
-            ${message}
+        <div class="row active" id="js-air">
+            <div class="col s12 m6 center">
+                <i class="material-icons md-64">${sentiment}</i>
+                <h5>AQI: ${aqi}<a href="https://airnow.gov/index.cfm?action=aqibasics.aqi" target="_blank" rel="noopener noreferrer" title="EPA explanation on AQI"><sup><i class="material-icons md-16">info_outline</i></sup></a></h5>
+            </div>
+            <div class="col s12 m6 center">
+                ${message}
+            </div>
         </div>`);
 }
 
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function displayCityState(city, state) {
+    city = capitalize(city);
+    state = capitalize(state);
     $('#js-city-state').append(`<h5>${city}, ${state}</h5>`);
 }
 
@@ -217,55 +227,22 @@ function renderWeather(weatherData) {
 function handleSubmit() {
     $('#js-search-section').submit((e) => {
         e.preventDefault();
+        $('#js-result-section').hide();
         city = $('#js-city-entry').val();
         state = $('#js-state-entry').val();
         $('#js-city-entry').val('');
         $('#js-state-entry').val('');
+        //clear data display
+        $('#js-city-state').empty();
+        $('#js-card-tabs').empty();
+        $('#js-data').empty();
         displayCityState(city, state);
         getRequestAir(city, state, renderAir);
         getRequestWeather(city, renderWeather);
-        $('#js-card').not('#js-date0, #js-date0-detail, #js-date1, #js-date1-detail, #js-date2, #js-date2-detail, #js-date3, #js-date3-detail, #js-date4, #js-date4-detail').show();
-    });
-}
-// handle tab clicking
-function handleAirTabClick() {
-    $('#js-air').click((e) => {
-        e.preventDefault();
-        alert('clicked');
-        // everything including js-aqi-data and js-aqi-msg shows
-        $('#js-card').not('#js-date0, #js-date0-detail, #js-date1, #js-date1-detail, #js-date2, #js-date2-detail, #js-date3, #js-date3-detail, #js-date4, #js-date4-detail').show();
-    });
-}
-function handleDate0TabClick() {
-    $('#js-tab-date0').click((e) => {
-        e.preventDefault();
-        alert('clicked');
-        $('#js-card').not('#js-aqi-data, #js-aqi-msg, #js-date0-detail, #js-date1, #js-date1-detail, #js-date2, #js-date2-detail, #js-date3, #js-date3-detail, #js-date4, #js-date4-detail').show();
-    });
-}
-
-function handleDate1TabClick() {
-    $('#js-tab-date0').click((e) => {
-        e.preventDefault();
-        alert('clicked');
-        $('#js-date1, #js-date1-detail').show();
-        // hide the rest
-        $('#js-aqi-data, #js-aqi-msg, #js-date0, #js-date0-detail, #js-date2, #js-date2-detail, #js-date3, #js-date3-detail, #js-date4, #js-date4-detail').hide();
-    });
-}
-
-function handleDate2TabClick() {
-    $('#js-tab-date0').click((e) => {
-        e.preventDefault();
-        alert('clicked');
-        $('#js-date2, #js-date2-detail').show();
-        // hide the rest
-        $('#js-aqi-data, #js-aqi-msg, #js-date0, #js-date0-detail, #js-date2, #js-date2-detail, #js-date3, #js-date3-detail, #js-date4, #js-date4-detail').hide();
+        $('#js-result-section').show();
     });
 }
 
 $(document).ready(() => {
     handleSubmit();
-    handleAirTabClick();
-    handleDate0TabClick();
 });

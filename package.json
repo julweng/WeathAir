@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
+    "jquery-lazyload": "^1.9.7",
     "request": "^2.83.0"
   }
 }
