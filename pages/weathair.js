@@ -132,15 +132,13 @@ function makeDateArray(weatherData, array){
 }
 
 // add dates to tabs
-function addDateTabs(weatherData){
+function addTabs(weatherData, string){
     let array = [];
     makeDateArray(weatherData, array);
     array.forEach((date, index) => {
-        $('#js-card-tabs').append(`
-            <li class="tab">
-                <a href="#js-date${index}"><strong>${date}</strong></a>
-            </li>`);
+        $(`a[href='#js-date${index}']`).append(`${date}`);
     });
+    $(`a[href='#js-${string}']`).append(`${string}`);
 }
 
 function displayWeather(weatherData) {
@@ -165,26 +163,24 @@ function displayWeather(weatherData) {
         } = weather;
         let max_tempCel = convertToCelcius(max_temp);
         let min_tempCel = convertToCelcius(min_temp);
-    $('#js-data').append(`
-        <div class="row hidden" id="js-date${index}">
-            <div class="col s12 m6 center">
-                <img src="icons/${icon}.png" alt="weather icon">
-                <p>${min_temp} / ${max_temp} &deg;F</p>
-                <p>${min_tempCel} / ${max_tempCel} &deg;C</p>
-                <p>${description}</p>
-            </div>
-            <div class="col s12 m6 left">
-                <ul>
-                    <li><strong>average cloud coverage:</strong> ${clouds} %</li>
-                    <li><strong>wind speed:</strong> ${wind_sp} m/s</li>
-                    <li class="collection-item"><strong>wind direction:</strong> ${wind_cdir}</li>
-                    <li class="collection-item"><strong>probability of precip:</strong> ${pop}%</li>
-                    <li class="collection-item"><strong>visibility:</strong> ${vis} km</li>
-                    <li class="collection-item"><strong>snow:</strong> ${snow} mm</li>
-                    <li class="collection-item"><strong>snow depth:</strong> ${snow_depth} mm</li>
-                    <li class="collection-item"><strong>daily max. UV (0-11+):</strong> ${uv}</li>
-                </ul>
-            </div>
+        $('#js-result-section div').find(`[id='js-date${index}']`).append(`
+        <div class="col s12 m6 center">
+            <img src="icons/${icon}.png" alt="weather icon">
+            <p>${min_temp} / ${max_temp} &deg;F</p>
+            <p>${min_tempCel} / ${max_tempCel} &deg;C</p>
+            <p>${description}</p>
+        </div>
+        <div class="col s12 m6 center">
+            <ul class="left-align">
+                <li><strong>average cloud coverage:</strong> ${clouds} %</li>
+                <li><strong>wind speed:</strong> ${wind_sp} m/s</li>
+                <li><strong>wind direction:</strong> ${wind_cdir}</li>
+                <li><strong>probability of precip:</strong> ${pop}%</li>
+                <li><strong>visibility:</strong> ${vis} km</li>
+                <li><strong>snow:</strong> ${snow} mm</li>
+                <li><strong>snow depth:</strong> ${snow_depth} mm</li>
+                <li><strong>daily max. UV (0-11+):</strong> ${uv}</li>
+            </ul>
         </div>`);
     });
 }
@@ -194,18 +190,15 @@ function renderAir(airData) {
     // get google sentiment icon for air quality
     let sentiment = airQualitySentiment(aqi);
     let message = airQualityMessage(aqi);
-    $('#js-card-tabs').prepend(
-        `<li class="tab"><a href="#js-air" class="active"><strong>Air</strong></a></li>`);
-    $('#js-data').append(`
-        <div class="row active" id="js-air">
-            <div class="col s12 m6 center">
-                <i class="material-icons md-64">${sentiment}</i>
-                <h5>AQI: ${aqi}<a href="https://airnow.gov/index.cfm?action=aqibasics.aqi" target="_blank" rel="noopener noreferrer" title="EPA explanation on AQI"><sup><i class="material-icons md-16">info_outline</i></sup></a></h5>
-            </div>
-            <div class="col s12 m6 center">
-                ${message}
-            </div>
-        </div>`);
+    $('#js-Air').append(`
+        <div class="col s12 m6 center">
+            <i class="material-icons md-64">${sentiment}</i>
+            <h5>AQI: ${aqi}<a href="https://airnow.gov/index.cfm?action=aqibasics.aqi" target="_blank" rel="noopener noreferrer" title="EPA explanation on AQI"><sup><i class="material-icons md-16">info_outline</i></sup></a></h5>
+        </div>
+        <div class="col s12 m6 center">
+            ${message}
+        </div>
+        `);
 }
 
 function capitalize(string) {
@@ -219,23 +212,26 @@ function displayCityState(city, state) {
 }
 
 function renderWeather(weatherData) {
-    addDateTabs(weatherData);
+    addTabs(weatherData, 'Air');
     displayWeather(weatherData);
+}
+
+//clear data display
+function clear() {
+    $('#js-city-state').empty();
+    $('.card-conent div').empty();
+    $('.tab a').empty();
 }
 
 // handleSubmit; get city and state
 function handleSubmit() {
     $('#js-search-section').submit((e) => {
         e.preventDefault();
-        $('#js-result-section').hide();
+        clear();
         city = $('#js-city-entry').val();
         state = $('#js-state-entry').val();
         $('#js-city-entry').val('');
         $('#js-state-entry').val('');
-        //clear data display
-        $('#js-city-state').empty();
-        $('#js-card-tabs').empty();
-        $('#js-data').empty();
         displayCityState(city, state);
         getRequestAir(city, state, renderAir);
         getRequestWeather(city, renderWeather);
@@ -244,5 +240,6 @@ function handleSubmit() {
 }
 
 $(document).ready(() => {
+    $('#js-result-section').hide();
     handleSubmit();
 });

@@ -8,12 +8,6 @@ nav .brand-logo {
     display: none;
 }
 
-button {
-    background-color: transparent;
-    border: none;
-    outline: none;
-}
-
 img[src="logo.png"] {
     height: 65px;
     width: 80px;

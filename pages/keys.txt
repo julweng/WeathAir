@@ -1,0 +1,11 @@
+E3FYqJAMJhNcyS4ye air visual key
+
+air visual request url example
+http://api.airvisual.com/v2/city?city=los%20angeles&state=california&country=USA&key=E3FYqJAMJhNcyS4ye
+
+weatherbit api key
+967524b9dfb34eea830cbfb0592b6cdd
+HTTPS: https://api.weatherbit.io/v2.0/forecast/daily
+
+example:
+https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key={API_KEY}
