@@ -1,0 +1,11 @@
+1. "About" and "Links" at the top navigation bar that help users navigate to the footer seem unnecessary since the page is not very long.
+    to-do: remove "About" and "Links"
+
+2. Users get "punished" with spelling errors.
+    to-do: maybe use drop down menu instead.
+
+3. result presentation seem ok, but after doing another search, the results pile on top of each other.
+    to-do: fix the clear() in code
+
+4. input field looks too wide, butting against the side of the screen on mobile.
+    to-do: adjust width
