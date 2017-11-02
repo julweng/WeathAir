@@ -218,9 +218,8 @@ function renderWeather(weatherData) {
 
 //clear data display
 function clear() {
-    $('#js-city-state').empty();
-    $('.card-conent div').empty();
-    $('.tab a').empty();
+    $('div.card-content div').empty();
+    $('li.tab a').empty();
 }
 
 // handleSubmit; get city and state
@@ -235,7 +234,7 @@ function handleSubmit() {
         displayCityState(city, state);
         getRequestAir(city, state, renderAir);
         getRequestWeather(city, renderWeather);
-        $('#js-result-section').show();
+        $('#js-result-section').fadeIn(3000);
     });
 }
 
