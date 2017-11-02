@@ -1,6 +1,6 @@
 'use strict';
 
-const AIRVISUAL_SEARCH_URL = 'http://api.airvisual.com/v2/city';
+const AIRVISUAL_SEARCH_URL = 'https://api.airvisual.com/v2/city';
 const AIRVISUAL_KEY = 'E3FYqJAMJhNcyS4ye';
 
 const WEATHERBIT_SEARCH_URL = 'https://api.weatherbit.io/v2.0/forecast/daily';
