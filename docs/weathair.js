@@ -164,13 +164,13 @@ function displayWeather(weatherData) {
         let max_tempCel = convertToCelcius(max_temp);
         let min_tempCel = convertToCelcius(min_temp);
         $('#js-result-section div').find(`[id='js-date${index}']`).append(`
-        <div class="col s12 m6 center">
+        <div class="col s10 m6 center">
             <img src="icons/${icon}.png" alt="weather icon">
             <p>${min_temp} / ${max_temp} &deg;F</p>
             <p>${min_tempCel} / ${max_tempCel} &deg;C</p>
             <p>${description}</p>
         </div>
-        <div class="col s12 m6 center">
+        <div class="col s10 m6 center">
             <ul class="left-align">
                 <li><strong>average cloud coverage:</strong> ${clouds} %</li>
                 <li><strong>wind speed:</strong> ${wind_sp} m/s</li>
@@ -191,11 +191,11 @@ function renderAir(airData) {
     let sentiment = airQualitySentiment(aqi);
     let message = airQualityMessage(aqi);
     $('#js-Air').append(`
-        <div class="col s12 m6 center">
+        <div class="col s10 m6 center">
             <i class="material-icons md-64">${sentiment}</i>
             <h5>AQI: ${aqi}<a href="https://airnow.gov/index.cfm?action=aqibasics.aqi" target="_blank" rel="noopener noreferrer" title="EPA explanation on AQI"><sup><i class="material-icons md-16">info_outline</i></sup></a></h5>
         </div>
-        <div class="col s12 m6 center">
+        <div class="col s10 m6 center">
             ${message}
         </div>
         `);
