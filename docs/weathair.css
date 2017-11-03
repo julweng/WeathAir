@@ -57,7 +57,7 @@ h1.header, h5.header {
     font-size: 1rem;
 }
 
-nav div p span, .input-field label, .tabs .tab a:active, .tabs .tab a, .btn, error {
+nav div p span, .input-field label, .tabs .tab a:active, .tabs .tab a, .btn, .error, .min-temp, .max-temp {
     font-weight: bold;
 }
 
@@ -109,6 +109,10 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 .card-tabs, ul.tabs, .tabs li {
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.card p, .card li {
+    font-size: 1.1rem;
 }
 
 .input-field label, .tabs .tab a.active, .card-title {
