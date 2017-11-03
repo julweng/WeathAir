@@ -1,12 +1,42 @@
-
-nav ul a,
-nav .brand-logo {
-  color: #444;
+nav div p span:first-child, nav div p span:nth-child(3) {
+    color: #e8eaf6;
 }
 
-img[src="logo.png"] {
-    height: 65px;
-    width: 80px;
+nav div p span:nth-child(2) {
+    color: #ffd54f;
+}
+
+nav div p span:nth-child(4) {
+    color: #64ffda;
+}
+
+nav div p span {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+html {
+    background-color: #263238;
+}
+
+nav {
+    border-bottom: 0.3rem solid #1de9b6;
+    background-color: #263238;
+    margin-top: 0;
+}
+
+header div:nth-child(2) {
+    width: 100%;
+    background-color: #01579b;
+}
+
+header img {
+    width: 5rem;
+    height: 5rem;
+}
+
+h1.header, h5.header {
+    color: #fafafa;
 }
 
 .material-icons.md-64 {
@@ -19,19 +49,43 @@ img[src="logo.png"] {
 
 /* label color */
  .input-field label {
-   color: #000;
+   color: #1a237e;
    font-size: 1.5rem;
+   font-weight: bold;
  }
- /* label focus color */
- .input-field input[type=text]:focus + label {
-   color: #000;
- }
- /* label underline focus color */
- .input-field input[type=text]:focus {
-   border-bottom: 1px solid #000;
-   box-shadow: 0 1px 0 0 #000;
- }
- /* icon prefix focus color */
- .input-field {
-   color: #000;
- }
+
+.btn {
+    font-weight: bold;
+    background-color: #009688;
+}
+
+.btn:hover {
+    background-color: #80cbc4;
+}
+
+.btn:focus {
+    background-color: #00695c;
+}
+.page-footer {
+    background-color: #01579b;
+}
+.footer-copyright {
+    border-top: 0.3rem solid #1de9b6;
+    color: #fff;
+}
+
+.page-footer div, .page-footer p {
+    color: #fff;
+}
+
+.page-footer a {
+    color: #ffeb3b;
+}
+
+body {
+    background-color: #fff8e1;
+}
+
+::placeholder {
+    color: #616161;
+}

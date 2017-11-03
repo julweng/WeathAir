@@ -35,7 +35,7 @@ function showErr(err) {
     const { status } = err;
     console.log(err)
     let errMsg;
-    if (status === 404) {
+    if (status === 404 || status === 400) {
         errMsg = `city or state cannot be found!`
     }
     if (status === 503) {
@@ -45,7 +45,7 @@ function showErr(err) {
         errMsg = `no available data!`
     }
     const errHTML = (
-    `<div class="error col s12 m6 offset-m4">
+    `<div class="error col s12 m6 offset-m3 center">
       <p>${errMsg}<p>
     </div>`
     );

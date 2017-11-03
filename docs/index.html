@@ -16,18 +16,20 @@
         <meta name="author" content="Julia Tzu-Ya Weng">
         <title>WeathAir</title>
     </head>
-
     <body>
         <header>
-            <nav class="white" role="navigation">
+            <nav role="navigation">
                 <div class="nav-wrapper container">
-                    <img src="logo.png" alt="wair-logo" role="logo">
+                    <p>
+                        <span>W</span><span>A</span><span>i</span><span>R</span>
+                    </p>
                 </div>
             </nav>
-            <div class="container row grey" role="banner">
+            <div class="container row" role="banner">
                 <div class="row">
-                    <h1 class="header col s12 center">WeathAir</h1>
-                    <h5 class="header col s12 center">Going for a run? Check the weather and air quality</h5>
+                    <h1 class="header col s10 center">WeathAir<span><img src="weather_icons/animated/rainy-1.svg" alt="rainy icon"></span></h1>
+                    <h5 class="header col s10 offset-s1 center">Going for a run?</h5>
+                    <h5 class="header col s10 offset-s1 center">Check the weather and air quality</h5>
                 </div>
             </div>
         </header>
@@ -49,7 +51,7 @@
                     </div>
                     <div class="row">
                         <div class="col s10 offset-s1 center">
-                            <button class="btn waves-effect waves-light" type="submit" name="action" id="js-submit"><i class="material-icons right" role="button">cloud</i>Submit</button>
+                            <button class="btn" type="submit" name="action" id="js-submit"><i class="material-icons right" role="button">cloud</i>Submit</button>
                         </div>
                     </div>
                 </form>
@@ -88,26 +90,26 @@
             </section>
         </main>
 
-        <footer class="page-footer grey">
+        <footer class="page-footer">
           <div class="container">
             <div class="row">
               <div class="col l8 s10 offset-s1 offset-l1" role="contentinfo">
-                <h5 class="black-text" id="about-app">About the App</h5>
-                <p class="black-text">WeathAir is a front-end project build with HTML, CSS, and JavaScript. Weather and air quality data are obtained through the free API access packages offered by Weatherbit and AirVisual, respectively.</p>
+                <h5>About the App</h5>
+                <p>WeathAir is a front-end project build with HTML, CSS, and JavaScript. Weather and air quality data are obtained through the free API access packages offered by Weatherbit and AirVisual, respectively.</p>
               </div>
               <div class="col l3 s10 offset-s1">
-                <h5 class="black-text" id="links">Links</h5>
+                <h5>Links</h5>
                 <ul role="list" aria-label="links to external resources">
-                    <li role="listitem"><a href="https://www.weatherbit.io/" class="black-text">Weatherbit</a></li>
-                    <li role="listitem"><a href="https://airvisual.com/" class="black-text">AirVisual</a></li>
-                    <li role="listitem"><a href="https://www.airnow.gov/" class="black-text">AirNow</a></li>
+                    <li role="listitem"><a href="https://www.weatherbit.io/" >Weatherbit</a></li>
+                    <li role="listitem"><a href="https://airvisual.com/" >AirVisual</a></li>
+                    <li role="listitem"><a href="https://www.airnow.gov/" >AirNow</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="footer-copyright" role="contentinfo">
-            <div class="container black-text center">
-            Made by <a href="#" class="black-text">Julia Weng</a>
+            <div class="container center">
+            Made by <a href="#">Julia Weng</a>
             </div>
           </div>
         </footer>
