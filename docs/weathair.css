@@ -4,10 +4,6 @@ nav .brand-logo {
   color: #444;
 }
 
-.hidden {
-    display: none;
-}
-
 img[src="logo.png"] {
     height: 65px;
     width: 80px;

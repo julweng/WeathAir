@@ -41,6 +41,9 @@ function showErr(err) {
     if (status === 503) {
         errMsg = `server could not be reached!`
     }
+    if (status === 'no_nearest_station') {
+        errMsg = `no available data!`
+    }
     const errHTML = (
     `<div class="error col s12 m6 offset-m4">
       <p>${errMsg}<p>
@@ -164,22 +167,22 @@ function displayWeather(weatherData) {
         let max_tempCel = convertToCelcius(max_temp);
         let min_tempCel = convertToCelcius(min_temp);
         $('#js-result-section div').find(`[id='js-date${index}']`).append(`
-        <div class="col s10 offset-s1 m6 center">
+        <div class="col s10 offset-s1 m6 center" role="region" aria-label="weather summary">
             <img src="icons/${icon}.png" alt="weather icon">
             <p>${min_temp} / ${max_temp} &deg;F</p>
             <p>${min_tempCel} / ${max_tempCel} &deg;C</p>
             <p>${description}</p>
         </div>
-        <div class="col s10 offset-s1 m6 center">
-            <ul class="left-align">
-                <li><strong>average cloud coverage:</strong> ${clouds} %</li>
-                <li><strong>wind speed:</strong> ${wind_sp} m/s</li>
-                <li><strong>wind direction:</strong> ${wind_cdir}</li>
-                <li><strong>probability of precip:</strong> ${pop}%</li>
-                <li><strong>visibility:</strong> ${vis} km</li>
-                <li><strong>snow:</strong> ${snow} mm</li>
-                <li><strong>snow depth:</strong> ${snow_depth} mm</li>
-                <li><strong>daily max. UV (0-11+):</strong> ${uv}</li>
+        <div class="col s10 offset-s1 m6 center" role="region" aria-label="weather summary">
+            <ul class="left-align" role="list" aria-label="detailed weather data">
+                <li role="listitem"><strong>average cloud coverage:</strong> ${clouds} %</li>
+                <li role="listitem"><strong>wind speed:</strong> ${wind_sp} m/s</li>
+                <li role="listitem"><strong>wind direction:</strong> ${wind_cdir}</li>
+                <li role="listitem"><strong>probability of precip:</strong> ${pop}%</li>
+                <li role="listitem"><strong>visibility:</strong> ${vis} km</li>
+                <li role="listitem"><strong>snow:</strong> ${snow} mm</li>
+                <li role="listitem"><strong>snow depth:</strong> ${snow_depth} mm</li>
+                <li role="listitem"><strong>daily max. UV (0-11+):</strong> ${uv}</li>
             </ul>
         </div>`);
     });
@@ -191,12 +194,12 @@ function renderAir(airData) {
     let sentiment = airQualitySentiment(aqi);
     let message = airQualityMessage(aqi);
     $('#js-Air').append(`
-        <div class="col s10 offset-s1 m6 center">
+        <div class="col s10 offset-s1 m6 center" role="region" aria-label="air quality data">
             <i class="material-icons md-64">${sentiment}</i>
             <h5>AQI: ${aqi}<a href="https://airnow.gov/index.cfm?action=aqibasics.aqi" target="_blank" rel="noopener noreferrer" title="EPA explanation on AQI"><sup><i class="material-icons md-16">info_outline</i></sup></a></h5>
         </div>
         <div class="col s10 offset-s1 m6 center">
-            ${message}
+            <p>${message}</p>
         </div>
         `);
 }
@@ -220,22 +223,6 @@ function renderWeather(weatherData) {
 function clear() {
     $('div.card-content div').empty();
     $('li.tab a').empty();
-}
-
-// handleSubmit; get city and state
-function handleSubmit() {
-    $('#js-search-section').submit((e) => {
-        e.preventDefault();
-        clear();
-        city = $('#js-city-entry').val();
-        state = $('#js-state-entry').val();
-        $('#js-city-entry').val('');
-        $('#js-state-entry').val('');
-        displayCityState(city, state);
-        getRequestAir(city, state, renderAir);
-        getRequestWeather(city, renderWeather);
-        $('#js-result-section').fadeIn(3000);
-    });
 }
 
 function autocompleteState() {
@@ -640,8 +627,24 @@ function autocompleteCity() {
     });
 }
 
+// handleSubmit; get city and state
+function handleSubmit() {
+    $('#js-search-section').submit((e) => {
+        e.preventDefault();
+        clear();
+        city = $('#js-city-entry').val();
+        state = $('#js-state-entry').val();
+        $('#js-city-entry').val('');
+        $('#js-state-entry').val('');
+        displayCityState(city, state);
+        getRequestAir(city, state, renderAir);
+        getRequestWeather(city, renderWeather);
+        $('#js-result-section').fadeIn(3000);
+    });
+}
+
 $(document).ready(() => {
-    $('#js-result-section').hide();
+    $('#js-result-section').prop('hidden', true);
     autocompleteCity();
     autocompleteState();
     handleSubmit();
