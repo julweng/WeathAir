@@ -11,6 +11,10 @@ nav div p span:first-child, nav div p span:nth-child(3) {
     color: #e8eaf6;
 }
 
+ .nav-wrapper p {
+     padding-left: 1.5rem;
+ }
+
 nav div p span:nth-child(2) {
     color: #ffd54f;
 }
