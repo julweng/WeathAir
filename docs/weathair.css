@@ -1,3 +1,8 @@
+
+html, nav, .page-footer .footer-copyright {
+    background-color: #263238;
+}
+
 nav div p span:first-child, nav div p span:nth-child(3) {
     color: #e8eaf6;
 }
@@ -12,10 +17,6 @@ nav div p span:nth-child(4) {
 
 nav div p span {
     font-size: 2rem;
-}
-
-html nav {
-    background-color: #263238;
 }
 
 nav {
@@ -45,8 +46,8 @@ h1.header, h5.header {
 }
 
 /* label, tab color */
- .input-field label, .tabs .tab a:active, .tabs .tab a {
-   color: #1a237e;
+.tabs .tab a {
+   color: #009688;
  }
 
  .input-field label {
@@ -57,20 +58,20 @@ h1.header, h5.header {
     font-size: 1rem;
 }
 
-nav div p span, .input-field label, .tabs .tab a:active, .tabs .tab a, .btn {
+nav div p span, .input-field label, .tabs .tab a:active, .tabs .tab a, .btn, error {
     font-weight: bold;
 }
 
 .btn {
-    background-color: #009688;
+    background-color: #fb8c00;
 }
 
 .btn:hover {
-    background-color: #80cbc4;
+    background-color: #ffca28;
 }
 
 .btn:focus {
-    background-color: #00695c;
+    background-color: #e65100;
 }
 
 .footer-copyright {
@@ -86,15 +87,15 @@ nav div p span, .input-field label, .tabs .tab a:active, .tabs .tab a, .btn {
 }
 
 .page-footer a:visited {
-    color: #fce4ec;
+    color: #ffab91;
 }
 
 body {
-    background-color: #fff8e1;
+    background-color: #fafafa;
 }
 
 ::placeholder {
-    color: #616161;
+    color: #bcaaa4;
 }
 
 .card-tabs, ul.tabs, .tabs li {
@@ -107,10 +108,34 @@ body {
     border-radius: 1rem;
 }
 
-.tabs .tab a.active, .card-title {
-    color: #2196f3;
+.input-field label, .tabs .tab a.active, .card-title {
+    color: #025C8D;
 }
 
 .tabs .indicator {
     background-color: #2196f3;
+}
+
+input[type=text]:not(.browser-default) {
+    border-bottom: 0.16rem solid #424242;
+}
+
+.error {
+    color: #ff3d00;
+    font-size: 1.25rem;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid #ef6c00;
+    -webkit-box-shadow: 0 1px 0 0 #ef6c00;
+    box-shadow: 0 1px 0 0 #ef6c00;
+    background-color: none;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly])+label {
+    color: #ef6c00;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:focus {
+    -webkit-box-shadow: inset 0 0 0px 9999px white !important;
 }

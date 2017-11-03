@@ -10,39 +10,42 @@ const WEATHERBIT_KEY = '967524b9dfb34eea830cbfb0592b6cdd';
 let city = '';
 let state = '';
 
-function getRequestAir(city, state, callback) {
+function getRequestAir(city, state) {
     const airParams = {
         city: city,
         state: state,
         country: 'USA',
         key: AIRVISUAL_KEY,
     };
-    $.getJSON(AIRVISUAL_SEARCH_URL, airParams, callback).fail(showErr);
+    return $.getJSON(AIRVISUAL_SEARCH_URL, airParams);
 }
 
-function getRequestWeather(city, callback) {
+function getRequestWeather(city) {
     const weatherParams = {
         city: city,
         units: 'I', //Fahrenheit
         days: 5, // 5 day forecast
         key: WEATHERBIT_KEY,
-    }
-    $.getJSON(WEATHERBIT_SEARCH_URL, weatherParams, callback).fail(showErr);
+    };
+    return $.getJSON(WEATHERBIT_SEARCH_URL, weatherParams);
 }
 
 function showErr(err) {
     const errorOutput = $('#js-result-section');
-    const { status } = err;
+    const { status, statusText} = err;
     console.log(err)
     let errMsg;
-    if (status === 404 || status === 400) {
-        errMsg = `city or state cannot be found!`
+    if (status === 404 || statusText === 404) {
+        errMsg = `city or state cannot be found!`;
     }
-    if (status === 503) {
-        errMsg = `server could not be reached!`
+    if (status === 503 || statusText === 503) {
+        errMsg = `server(s) could not be reached!`;
+    }
+    if (status === 400 || statusText === 400) {
+        errMsg = `Uh oh... the server(s) could not understand your query!`;
     }
     if (status === 'no_nearest_station') {
-        errMsg = `no available data!`
+        errMsg = `no available data!`;
     }
     const errHTML = (
     `<div class="error col s12 m6 offset-m3 center">
@@ -173,16 +176,16 @@ function displayWeather(weatherData) {
             <p>${min_tempCel} / ${max_tempCel} &deg;C</p>
             <p>${description}</p>
         </div>
-        <div class="col s10 offset-s1 m6 center" role="region" aria-label="weather summary">
+        <div class="col s10 offset-s1 m6 right" role="region" aria-label="weather summary">
             <ul class="left-align" role="list" aria-label="detailed weather data">
-                <li role="listitem"><strong>average cloud coverage:</strong> ${clouds} %</li>
-                <li role="listitem"><strong>wind speed:</strong> ${wind_sp} m/s</li>
-                <li role="listitem"><strong>wind direction:</strong> ${wind_cdir}</li>
-                <li role="listitem"><strong>probability of precip:</strong> ${pop}%</li>
-                <li role="listitem"><strong>visibility:</strong> ${vis} km</li>
-                <li role="listitem"><strong>snow:</strong> ${snow} mm</li>
-                <li role="listitem"><strong>snow depth:</strong> ${snow_depth} mm</li>
-                <li role="listitem"><strong>daily max. UV (0-11+):</strong> ${uv}</li>
+                <li role="listitem"><strong>average cloud coverage:</strong> &nbsp;&nbsp;${clouds} %</li>
+                <li role="listitem"><strong>wind speed:</strong> &nbsp;&nbsp;${wind_sp} m/s</li>
+                <li role="listitem"><strong>wind direction:</strong> &nbsp;&nbsp;${wind_cdir}</li>
+                <li role="listitem"><strong>probability of precip:</strong> &nbsp;&nbsp;${pop}%</li>
+                <li role="listitem"><strong>visibility:</strong> &nbsp;&nbsp;${vis} km</li>
+                <li role="listitem"><strong>snow:</strong> &nbsp;&nbsp;${snow} mm</li>
+                <li role="listitem"><strong>snow depth:</strong> &nbsp;&nbsp;${snow_depth} mm</li>
+                <li role="listitem"><strong>daily max. UV (0-11+):</strong> &nbsp;&nbsp;${uv}</li>
             </ul>
         </div>`);
     });
@@ -637,8 +640,8 @@ function handleSubmit() {
         $('#js-city-entry').val('');
         $('#js-state-entry').val('');
         displayCityState(city, state);
-        getRequestAir(city, state, renderAir);
-        getRequestWeather(city, renderWeather);
+        getRequestAir(city, state).then(renderAir).fail(showErr);
+        getRequestWeather(city).then(renderWeather).fail(showErr);
         $('#js-result-section').fadeIn(3000);
     });
 }
