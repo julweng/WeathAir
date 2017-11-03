@@ -12,21 +12,22 @@ nav div p span:nth-child(4) {
 
 nav div p span {
     font-size: 2rem;
-    font-weight: bold;
 }
 
-html {
+html nav {
     background-color: #263238;
 }
 
 nav {
     border-bottom: 0.3rem solid #1de9b6;
-    background-color: #263238;
     margin-top: 0;
 }
 
 header div:nth-child(2) {
     width: 100%;
+}
+
+header div:nth-child(2), .page-footer {
     background-color: #01579b;
 }
 
@@ -43,19 +44,24 @@ h1.header, h5.header {
     font-size: 4rem;
 }
 
-.material-icons.md-16 {
-    font-size: 1rem
-}
-
-/* label color */
- .input-field label {
+/* label, tab color */
+ .input-field label, .tabs .tab a:active, .tabs .tab a {
    color: #1a237e;
-   font-size: 1.5rem;
-   font-weight: bold;
  }
 
-.btn {
+ .input-field label {
+    font-size: 1.5rem;
+ }
+
+.material-icons.md-16, .tabs .tab a:active, .tabs .tab a {
+    font-size: 1rem;
+}
+
+nav div p span, .input-field label, .tabs .tab a:active, .tabs .tab a, .btn {
     font-weight: bold;
+}
+
+.btn {
     background-color: #009688;
 }
 
@@ -66,20 +72,21 @@ h1.header, h5.header {
 .btn:focus {
     background-color: #00695c;
 }
-.page-footer {
-    background-color: #01579b;
-}
+
 .footer-copyright {
     border-top: 0.3rem solid #1de9b6;
+}
+
+.page-footer, .footer-copyright, .page-footer a{
     color: #fff;
 }
 
-.page-footer div, .page-footer p {
-    color: #fff;
+.page-footer a:hover, .tabs .tab a:hover {
+    color: #e1bee7;
 }
 
-.page-footer a {
-    color: #ffeb3b;
+.page-footer a:visited {
+    color: #fce4ec;
 }
 
 body {
@@ -88,4 +95,22 @@ body {
 
 ::placeholder {
     color: #616161;
+}
+
+.card-tabs, ul.tabs, .tabs li {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.card {
+    border: 0.2rem solid #1565c0;
+    border-radius: 1rem;
+}
+
+.tabs .tab a.active, .card-title {
+    color: #2196f3;
+}
+
+.tabs .indicator {
+    background-color: #2196f3;
 }
