@@ -172,20 +172,20 @@ function displayWeather(weatherData) {
         $('#js-result-section div').find(`[id='js-date${index}']`).append(`
         <div class="col s10 offset-s1 m6 center" role="region" aria-label="weather summary">
             <img src="icons/${icon}.png" alt="weather icon">
-            <p>${min_temp} / ${max_temp} &deg;F</p>
-            <p>${min_tempCel} / ${max_tempCel} &deg;C</p>
+            <p><span class="min-temp">${min_temp}</span> / <span class="max-temp">${max_temp}</span> &deg;F</p>
+            <p><span class="min-temp">${min_tempCel}</span> / <span class="max-temp">${max_tempCel}</span> &deg;C</p>
             <p>${description}</p>
         </div>
         <div class="col s10 offset-s1 m6 right" role="region" aria-label="weather summary">
             <ul class="left-align" role="list" aria-label="detailed weather data">
-                <li role="listitem"><strong>average cloud coverage:</strong> &nbsp;&nbsp;${clouds} %</li>
-                <li role="listitem"><strong>wind speed:</strong> &nbsp;&nbsp;${wind_sp} m/s</li>
-                <li role="listitem"><strong>wind direction:</strong> &nbsp;&nbsp;${wind_cdir}</li>
-                <li role="listitem"><strong>probability of precip:</strong> &nbsp;&nbsp;${pop}%</li>
-                <li role="listitem"><strong>visibility:</strong> &nbsp;&nbsp;${vis} km</li>
-                <li role="listitem"><strong>snow:</strong> &nbsp;&nbsp;${snow} mm</li>
-                <li role="listitem"><strong>snow depth:</strong> &nbsp;&nbsp;${snow_depth} mm</li>
-                <li role="listitem"><strong>daily max. UV (0-11+):</strong> &nbsp;&nbsp;${uv}</li>
+                <li role="listitem"><strong>Cloud coverage:</strong> &nbsp;&nbsp;${clouds} %</li>
+                <li role="listitem"><strong>Wind speed:</strong>&nbsp;&nbsp;${wind_sp} m/s</li>
+                <li role="listitem"><strong>Wind direction:</strong>&nbsp;&nbsp;${wind_cdir}</li>
+                <li role="listitem"><strong>Probability of precip:</strong>&nbsp;&nbsp;${pop}%</li>
+                <li role="listitem"><strong>Visibility:</strong>&nbsp;&nbsp;${vis} km</li>
+                <li role="listitem"><strong>Snow:</strong>&nbsp;&nbsp;${snow} mm</li>
+                <li role="listitem"><strong>Snow depth:</strong>&nbsp;&nbsp;${snow_depth} mm</li>
+                <li role="listitem"><strong>Daily max. UV (0-11+):</strong>&nbsp;&nbsp;${uv}</li>
             </ul>
         </div>`);
     });
