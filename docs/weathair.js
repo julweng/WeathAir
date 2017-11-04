@@ -10,6 +10,7 @@ const WEATHERBIT_KEY = '967524b9dfb34eea830cbfb0592b6cdd';
 let city = '';
 let state = '';
 
+// request to airvisual
 function getRequestAir(city, state) {
     const airParams = {
         city: city,
@@ -20,6 +21,7 @@ function getRequestAir(city, state) {
     return $.getJSON(AIRVISUAL_SEARCH_URL, airParams);
 }
 
+// request to weatherbit
 function getRequestWeather(city) {
     const weatherParams = {
         city: city,
@@ -30,6 +32,7 @@ function getRequestWeather(city) {
     return $.getJSON(WEATHERBIT_SEARCH_URL, weatherParams);
 }
 
+// generate error message
 function showErr(err) {
     const errorOutput = $('#js-result-section');
     const { status, statusText} = err;
@@ -57,6 +60,7 @@ function showErr(err) {
       .append(errHTML)
 }
 
+// generate sentiment icon for air quality
 function airQualitySentiment(aqi) {
     let sentiment = '';
     if (!aqi) {
@@ -77,6 +81,7 @@ function airQualitySentiment(aqi) {
     return sentiment;
 }
 
+// generate description for air quality
 function airQualityMessage(aqi) {
     let message = '';
     if (!aqi) {
@@ -115,6 +120,7 @@ function airQualityMessage(aqi) {
     return message;
 }
 
+// convert F to C
 function convertToCelcius(fahrenheit) {
     return Math.round((fahrenheit - 32) * 5 / 9);
 }
@@ -137,16 +143,19 @@ function makeDateArray(weatherData, array){
     });
 }
 
-// add dates to tabs
+// add tabs
 function addTabs(weatherData, string){
     let array = [];
     makeDateArray(weatherData, array);
     array.forEach((date, index) => {
+        // date tabs
         $(`a[href='#js-date${index}']`).append(`${date}`);
     });
+    // air tab
     $(`a[href='#js-${string}']`).append(`${string}`);
 }
 
+// display weather on document
 function displayWeather(weatherData) {
     const { data } = weatherData;
     data.forEach((item, index) => {
@@ -207,16 +216,19 @@ function renderAir(airData) {
         `);
 }
 
+// if user query not capitalized, capitalize it
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// display user queried city and state on document
 function displayCityState(city, state) {
     city = capitalize(city);
     state = capitalize(state);
     $('#js-city-state').append(`<h5>${city}, ${state}</h5>`);
 }
 
+// render tabs and weather data
 function renderWeather(weatherData) {
     addTabs(weatherData, 'Air');
     displayWeather(weatherData);
@@ -228,6 +240,7 @@ function clear() {
     $('li.tab a').empty();
 }
 
+// checks user entry against this data for autocomplete state
 function autocompleteState() {
     $('#js-state-entry').autocomplete({
     data: {
@@ -297,6 +310,7 @@ function autocompleteState() {
     });
 }
 
+// check user entry against this data for autocomplete city
 function autocompleteCity() {
     $('#js-city-entry').autocomplete({
     data: {
@@ -630,7 +644,7 @@ function autocompleteCity() {
     });
 }
 
-// handleSubmit; get city and state
+// handleSubmit; get city and state; get data; render data on DOM; refresh
 function handleSubmit() {
     $('#js-search-section').submit((e) => {
         e.preventDefault();
