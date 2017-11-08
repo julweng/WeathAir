@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!--normalize CSS-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+        <!--Google Icon Font-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!-- Compiled and minified Materialize CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" >
+        <link rel="stylesheet" type="text/css" href="weathair.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="a simple app for current air quality lookup and 5-day weather forecast">
+        <meta name="keywords" content="air quality, weather, forecast">
+        <meta name="author" content="Julia Tzu-Ya Weng">
+        <title>WeathAir</title>
+    </head>
+    <body>
+        <header>
+            <nav role="navigation">
+                <div class="nav-wrapper container">
+                    <p>
+                        <span>W</span><span>A</span><span>i</span><span>R</span>
+                    </p>
+                </div>
+            </nav>
+            <div class="container row" role="banner">
+                <div class="row">
+                    <h1 class="header col s9 offset-s2 center">WeathAir<span><img src="weather_icons/animated/rainy-1.svg" alt="rainy icon"></span></h1>
+                    <h5 class="header col s10 offset-s1 center">Going for a run?</h5>
+                    <h5 class="header col s10 offset-s1 center">Check the weather and air quality</h5>
+                </div>
+            </div>
+        </header>
+        <main>
+            <!--search section-->
+            <section class="row" id="js-search-section">
+                <form class="col s12" id="js-search-form" role="search">
+                    <div class="row">
+                        <div class="input-field col s10 m4 offset-s1 offset-m4">
+                            <input id="js-city-entry" name="js-city-entry" class="autocomplete" type="text"  placeholder="Los Angeles" aria-labelledby="US city">
+                            <label for="js-city-entry" class="active">US city</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s10 m4 offset-s1 offset-m4">
+                            <input id="js-state-entry" name="js-state-entry" class="autocomplete" type="text"  placeholder="California" aria-labelledby="US state">
+                            <label for="js-state-entry" class="active">US state</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s10 offset-s1 center">
+                            <button class="btn" type="submit" name="action" id="js-submit"><i class="material-icons right" role="button">cloud</i>Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <!--result section-->
+            <section class="row" id="js-result-section" aria-live="assertive" hidden>
+                <div class="col s10 m6 offset-s1 offset-m3">
+                    <div class="card row">
+                        <div class="card-tabs" role="tabpanel">
+                            <ul class="tabs tabs-fixed-width" id="js-card-tabs" role="tablist">
+                                <li class="tab" role="tab"><a href="#js-Air" class="active"></a></li>
+                                <li class="tab" role="tab"><a href="#js-date0"></a></li>
+                                <li class="tab" role="tab"><a href="#js-date1"></a></li>
+                                <li class="tab" role="tab"><a href="#js-date2"></a></li>
+                                <li class="tab" role="tab"><a href="#js-date3"></a></li>
+                                <li class="tab" role="tab"><a href="#js-date4"></a></li>
+                            </ul>
+                        </div>
+                        <div class="card-content" role="region" aria-label="searched city and state">
+                            <div class="col s10 offset-s1 card-title center" id="js-city-state"></div>
+                        </div>
+
+                        <div class="card-content" role="region" aria-label="search result">
+                            <div class="row" id="js-Air"></div>
+                            <div class="row" id="js-date0"></div>
+                            <div class="row" id="js-date1"></div>
+                            <div class="row" id="js-date2"></div>
+                            <div class="row" id="js-date3"></div>
+                            <div class="row" id="js-date4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s10 m6 offset-s1 offset-m3 center" role="note">
+                    <p>undefined or empty data values = data is currently unavailable</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l8 s10 offset-s1 offset-l1" role="contentinfo">
+                <h5>About the App</h5>
+                <p>WeathAir is a front-end project build with HTML, CSS, and JavaScript. Weather and air quality data are obtained through the free API access packages offered by Weatherbit and AirVisual, respectively.</p>
+              </div>
+              <div class="col l3 s10 offset-s1">
+                <h5>Links</h5>
+                <ul role="list" aria-label="links to external resources">
+                    <li role="listitem" target="_blank" rel="noopener noreferrer"><a href="https://www.weatherbit.io/"  target="_blank" rel="noopener noreferrer">Weatherbit</a></li>
+                    <li role="listitem"><a href="https://airvisual.com/"  target="_blank" rel="noopener noreferrer">AirVisual</a></li>
+                    <li role="listitem"><a href="https://www.airnow.gov/"  target="_blank" rel="noopener noreferrer">AirNow</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright" role="contentinfo">
+            <div class="container center">
+            Made by <a href="#">Julia Weng</a>
+            </div>
+          </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <!-- Compiled and minified materialize CSS JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script src="weathair.js" type="text/javascript"></script>
+    </body>
+</html>
