@@ -1,7 +1,7 @@
 # WeathAir [Thinkful](https://www.thinkful.com/) first capstone project - a responsive air and weather forecast app.
 
 ## Introduction  
-WeathAir allows users to look up current air quality and 5-day weather conditions in the queried US city.  
+[WeathAir](https://julweng.github.io/WeathAir/) allows users to look up current air quality and 5-day weather conditions in the queried US city.  
 ![Screenshot](/docs/screenshot.png)  
 
 ## Use Case  
