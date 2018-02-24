@@ -1,6 +1,6 @@
 
 html, nav, .page-footer .footer-copyright {
-    background-color: #AA541B;
+    background-color: #002D4F;
 }
 
 body {
@@ -68,15 +68,15 @@ nav div p span, .input-field label, .tabs .tab a:active, .tabs .tab a, .btn, .er
 }
 
 .btn {
-    background-color: #fb8c00;
+    background-color: #1DE9B6;
 }
 
 .btn:hover {
-    background-color: #ffca28;
+    background-color: #15B28B;
 }
 
 .btn:focus {
-    background-color: #e65100;
+    background-color: #15B28B;
 }
 
 .footer-copyright {
