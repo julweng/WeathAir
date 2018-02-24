@@ -68,11 +68,11 @@ nav div p span, .input-field label, .tabs .tab a:active, .tabs .tab a, .btn, .er
 }
 
 .btn {
-    background-color: #1DE9B6;
+    background-color: #15B28B;
 }
 
 .btn:hover {
-    background-color: #15B28B;
+    background-color: #1DE9B6;
 }
 
 .btn:focus {
