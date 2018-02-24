@@ -3,7 +3,7 @@
 ## Introduction  
 WeathAir allows users to look up current air quality and 5-day weather conditions in the queried US city.  
 ![Screenshot: search field](/WeathAir_screenshot1.png)  
-![Screenshot: result](WeathAir_screenshot2.png)  
+![Screenshot: result](/WeathAir_screenshot2.png)  
 
 ## Use Case  
 This web application is designed for users to enter a US city and state to look up the current air quality and weather conditions, helping them plan for their outdoor activities. While some existing applications provide detailed measurements, the information may be too extensive, too confusing to navigate, or the significance of the given information may not be explained in a user-friendly way. This app organizes the data in easily understandable format and extracts the most important information, such as precipitation, wind direction, and wind speed, to help runners, joggers, and cyclists determine if it is a good day to workout outside.  
